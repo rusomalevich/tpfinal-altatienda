@@ -15,6 +15,9 @@ const PORT = process.env.PORT || 8080
 
 app.use(express.static(path.join(__dirname + '/public')))
 
+app.use('/api/products', productRouter)
+
+
 app.listen(PORT, () => {
     console.log(`El servidor se está escuchando en http://localhost:${PORT}/`)
 })
