@@ -14,6 +14,10 @@ const getProducts = async () => {
     
 }
 
+const getProductById = async (pid) => {
+    return await Product.findById(pid)
+}
+
 const deleteProduct = async (pid) => {
     console.log(pid)
     try {
@@ -30,4 +34,4 @@ const deleteProduct = async (pid) => {
     
 }
 
-module.exports = { createProduct, getProducts, deleteProduct }
+module.exports = { createProduct, getProducts, deleteProduct, getProductById }

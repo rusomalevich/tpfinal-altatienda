@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const cors = require('cors')
 const path = require('path')
 const productRouter = require('./routers/productRouter')
+const sessionRouter = require('./routers/sessionRouter')
 
 /* Configs */
 dotenv.config()
@@ -21,6 +22,7 @@ app.use(express.json())
 
 /* Routers */
 app.use('/api/products', productRouter)
+app.use('/session', sessionRouter)
 
 
 app.listen(PORT, () => {
