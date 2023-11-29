@@ -13,6 +13,7 @@ const app = express()
 const PORT = process.env.PORT || 8080
 
 /* Middlewares */
+app.use(cors())
 app.use(express.static(path.join(__dirname + '/public')))
 
 // DPS borrar línea urlencoded xq voy a usar todo x JSON

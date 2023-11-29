@@ -1,0 +1,48 @@
+.cardContainer {
+    /*
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    align-self: stretch;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    */
+    width: 75%;
+}
+
+.products {
+    display: flex;
+    gap: 30px;
+    padding: 0 10px;
+}
+
+.cardContainer {
+    display: flex;
+    gap: 30px;
+}
+
+.cardContainer-column {
+    background-clip: padding-box;
+}
+
+
+.cardContainer-column>div {
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .cardContainer {
+        width: 100%;
+    }
+    .products {
+        flex-flow: column-reverse;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .cardContainer {
+        gap: 20px;
+        width: 100%;
+    }
+}

@@ -1,0 +1,67 @@
+.card{
+    /*width: 30%;*/
+    background-color: var(--white);
+    box-shadow: 1px 1px 16px -15px;
+    text-align: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.card, .cardLink>h2, .cardLink>img {
+    transition: .3s;
+}
+
+.cardContainer .card:hover {
+    box-shadow: 1px 1px 16px -10px;
+    transform: scale(1.05);
+}
+
+.cardLink:hover h2 {
+    color: var(--primary);
+    transform: scale(1.05);
+}
+
+.cardLink:hover img {
+    transform: scale(1.09);
+}
+
+.cardLink > img {
+    max-width: 50%;
+}
+
+.category {
+    color:var(--gray-blue-grey-blue-70);
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.cardLink > h2 {
+    color: var(--gray-blue-grey-blue-50);
+    font-size: 1.6rem;
+}
+
+.cardLink > p {
+    color: var(--gray-blue-grey-blue-60);
+    font-size: 1.2rem;
+}
+
+@media (max-width: 1024px) {
+    /*
+    .card {
+        width: 45%;
+    }
+    */
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .cardLink>h3 {
+        margin-top: 15px;
+    }
+}
