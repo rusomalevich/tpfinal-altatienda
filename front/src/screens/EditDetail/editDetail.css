@@ -1,0 +1,37 @@
+.titleInput, .categoryInput, .priceDetailInput, .stockDetailInput {
+    border: none;
+    background: transparent;
+    outline-style: none;
+    transition: .3s;
+}
+
+.titleInput {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-blue-grey-blue-50);
+}
+
+.titleInput:hover {
+    background-color: var(--primaryAlpha);
+}
+
+.categoryInput {
+    color: var(--gray-blue-grey-blue-70);
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.categoryInput:hover {
+    background-color: var(--primaryAlpha);
+}
+
+.priceDetailInput{
+    color: var(--gray-blue-grey-blue-60, #6B7A99);
+    font-weight: 800;
+    line-height: normal;
+    font-size: 4rem;
+    padding-top: 30px;
+}
+
+.stockDetail {font-size: 1.5rem;}

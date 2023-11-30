@@ -29,10 +29,33 @@ const getProductById = async (pid) => {
     return await Product.findById(pid)
 }
 
-const updateProduct = async (pid) => {
-    console.log(pid)
+const updateProduct = async (pid, {title, category, image, price, stock, description}) => {
+    console.log(pid, { title, category, image, price, stock, description })
     try {
-        const updatedProduct = await Product.findByIdAndUpdate(pid)
+/*         const updatedProduct = await Product.findByIdAndUpdate(pid,
+            {title: title}, 
+            {category: category},
+            {image: image},
+            {price: price},
+            {stock: stock},
+            {description: description}
+            ) */
+
+        const updatedProduct = await Product.updateOne(
+            {
+                "_id": pid,
+            },
+            {
+                $set:{
+                    title: title,
+                    category: category,
+                    image: image,
+                    price: price,
+                    stock: stock,
+                    description: description
+                }
+            }
+        )
         if (updateProduct) {
             return { ok: true, updatedProduct }
         } else {

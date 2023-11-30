@@ -1,5 +1,5 @@
 const express = require('express')
-const { createProduct, getProducts, deleteProduct, getProductById, getCategories } = require('../dao/controllers/productController')
+const { createProduct, getProducts, updateProduct, deleteProduct, getProductById, getCategories } = require('../dao/controllers/productController')
 const productRouter = express.Router()
 
 productRouter.get('/', async (req, res) => {
@@ -24,6 +24,24 @@ productRouter.post('/', async (req, res) => {
     const {title, category, image, price, stock, description} = req.body
     await createProduct({ title, category, image, price, stock, description })
     res.json({ok:true, products: await getProducts()})
+})
+
+productRouter.put('/edit/:pid', async(req, res) => {
+    const { pid } = req.params
+    const { title, category, image, price, stock, description } = req.body
+    console.log(pid, { title, category, image, price, stock, description })
+    await updateProduct(pid, {title, category, image, price, stock, description})
+    let result = await updateProduct(pid, { title, category, image, price, stock, description })
+    if (result.ok) {
+        return res.status(200).json({
+            ok: true,
+            products: await getProducts(),
+            updateProduct: result.updatedProduct
+        }
+        )
+    } else {
+        return res.status(404).json({ ok: false, error: result.error })
+    }
 })
 
 productRouter.delete('/:pid', async (req, res)=>{
