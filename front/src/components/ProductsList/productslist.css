@@ -5,6 +5,7 @@
     text-align: center;
     padding: 40px 20px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .card, .cardLink>h2, .cardLink>img {
@@ -26,7 +27,7 @@
 }
 
 .cardLink > img {
-    max-width: 50%;
+    max-width: 90%;
 }
 
 .category {
@@ -43,6 +44,15 @@
 .cardLink > p {
     color: var(--gray-blue-grey-blue-60);
     font-size: 1.2rem;
+}
+
+.cardPencilEditable {
+    font-size: 1.5vw;
+    color: var(--primary);
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    z-index: 3;
 }
 
 @media (max-width: 1024px) {

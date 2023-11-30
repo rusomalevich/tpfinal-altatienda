@@ -31,7 +31,6 @@ const ContextProvider = ({children}) => {
 
     const addProductCart = (id, quantity) =>{
         if(isInCart(id)){
-            console.log('estaba en el carrito')
             setCart(cart.map(product =>{
                 if(product._id == id) {
                     product.quantity = quantity
@@ -39,7 +38,6 @@ const ContextProvider = ({children}) => {
                 return product
             }))
         } else{
-            console.log('NO ESTABA EN EL CARRITO')
             setCart([...cart, {...getProductById(id), quantity: quantity}])
    
         }
@@ -71,8 +69,15 @@ const ContextProvider = ({children}) => {
 
      useEffect(() => {
         const getCategories = async () => {
-            const responseCat = await axios.get(`${BASEURL}${URLcats}`)
-            setCategories(responseCat.data)
+            /* const responseCat = await axios.get(`${BASEURL}${URLcats}`)
+            setCategories(responseCat.data) */
+            fetch('http://localhost:3040/api/products/categories',
+                { method: 'GET' }
+            ).then((res) => res.json())
+                .then(result => {
+                    setCategories(result.products)
+                })
+            
         }
         getCategories()
     }, []) 

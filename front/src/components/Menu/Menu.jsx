@@ -1,5 +1,5 @@
 import React from 'react'
-import { HouseDoorFill, CartFill, EnvelopeFill } from 'react-bootstrap-icons'
+import { HouseDoorFill, CartFill, EnvelopeFill, PencilFill } from 'react-bootstrap-icons'
 import './menu.css'
 import { NavLink } from 'react-router-dom'
 import { useCustomContext } from '../../ContextManager/ContextProvider'
@@ -12,7 +12,8 @@ const Menu = () => {
   return (
     <>
     <nav className='menu'>
-        <NavLink to='/' className='navItem'><HouseDoorFill /></NavLink>
+        <NavLink to='/' className='navItem navEdit'><HouseDoorFill /></NavLink>
+        <NavLink to='/edit' className='navItem'><PencilFill /></NavLink>
         <NavLink to='/cart' className='navItem navCart'><CartFill />
           {
             cart.length > 0

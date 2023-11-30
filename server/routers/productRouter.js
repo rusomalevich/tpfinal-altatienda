@@ -1,9 +1,13 @@
 const express = require('express')
-const { createProduct, getProducts, deleteProduct, getProductById } = require('../dao/controllers/productController')
+const { createProduct, getProducts, deleteProduct, getProductById, getCategories } = require('../dao/controllers/productController')
 const productRouter = express.Router()
 
 productRouter.get('/', async (req, res) => {
     res.json({ ok: true, products: await getProducts()})
+})
+
+productRouter.get('/categories', async(req, res) => {
+    res.json({ok:true, products: await getCategories()})
 })
 
 productRouter.get('/:pid', async(req, res) => {

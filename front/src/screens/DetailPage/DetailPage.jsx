@@ -7,8 +7,7 @@ import './detailpage.css'
 const DetailPage = () => {
 
   const {id} = useParams()
-  console.log(id)
-  
+ 
   const {getProductById, isInCart, getProductCartById} = useCustomContext()
   const [productDetail, setProductDetail] = useState(isInCart(id) ? getProductCartById(id) : getProductById(id))
   
