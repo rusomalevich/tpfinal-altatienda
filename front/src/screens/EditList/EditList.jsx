@@ -2,6 +2,8 @@ import React from 'react'
 import { ProductsList } from "../../components"
 import { useCustomContext } from '../../ContextManager/ContextProvider'
 import Masonry from 'react-masonry-css'
+import { Link } from 'react-router-dom'
+import { PlusSquare } from 'react-bootstrap-icons'
 import './editList.css'
 
 const EditList = () => {
@@ -20,6 +22,12 @@ const EditList = () => {
               columnClassName='cardContainer-column'
 
           >
+              <div className='card'>
+                  <Link to={'/create/'} title='Crear producto' className='cardLink'>
+                      <span className='iconoPlus'><PlusSquare /></span>
+                    <h2>Nuevo Producto</h2>
+                  </Link>
+              </div>
               {
                   filteredProducts && filteredProducts.length > 0
                       ? filteredProducts.map((product) => (

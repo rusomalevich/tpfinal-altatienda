@@ -40,10 +40,11 @@ const EditDetail = () => {
             if (response.ok) {
                 Swal.fire({
                     title: 'El producto fue eliminado correctamente',
+                    didClose: () => location.replace('/')
                 })
                 console.log('El producto fue eliminado correctamente');
             } else {
-                console.error('Error al actualizar el producto');
+                console.error('Error al eliminar el producto');
             }
         } catch (error) {
             console.error('Error en la solicitud:', error);
@@ -73,10 +74,11 @@ const EditDetail = () => {
             if (response.ok) {
                 Swal.fire({
                     title: 'El producto fue modificado correctamente',
+                    didClose: () => location.replace('/')
                 })
                 console.log('El producto fue modificado correctamente');
             } else {
-                console.error('Error al actualizar el producto');
+                console.error('Error al modificar el producto');
             }
         } catch (error) {
             console.error('Error en la solicitud:', error);
