@@ -22,9 +22,9 @@ Componentes anteriores:
    * __Contact__ es donde se puede mandar un mail por cualquier consulta.
 
 Componentes nuevos
-    * __CreatePage__ Sirve para crear un producto nuevo.
-    * __EditList__ Además de mostrar los productos, muestra una tarjeta para agregar uno nuevo. Este componente utiliza *ProductList*, al que le envía la propiedad *edit*. Si esta es true, el componente renderea opciones de edición, como un botón de editar y otro de eliminar, además de que los links son a la edición de cada producto en particular.
-    * __EditDetail__ Permite tanto editar cada uno de los campos de cada producto como eliminar el producto de forma completa.
+   * __CreatePage__ Sirve para crear un producto nuevo.
+   * __EditList__ Además de mostrar los productos, muestra una tarjeta para agregar uno nuevo. Este componente utiliza *ProductList*, al que le envía la propiedad *edit*. Si esta es true, el componente renderea opciones de edición, como un botón de editar y otro de eliminar, además de que los links son a la edición de cada producto en particular.
+   * __EditDetail__ Permite tanto editar cada uno de los campos de cada producto como eliminar el producto de forma completa.
 
 En **components**:
 
