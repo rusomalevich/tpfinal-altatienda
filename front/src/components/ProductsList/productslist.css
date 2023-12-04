@@ -50,6 +50,7 @@
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .btnContainerCard .btn {
@@ -60,7 +61,7 @@
     align-items: center;
     gap: 10px;
     justify-content: center;
-    width: -webkit-fill-available;
+    width: 100%;
 }
 
 .btnContainerCard .btn .cardPencilEditable {
