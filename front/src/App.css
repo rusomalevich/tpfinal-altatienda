@@ -21,8 +21,8 @@ main h1, main h2, main p, main
 
 .body, body {
   background-color: var(--gray-blue-grey-blue-98);
-  height: 100%;
-  transition: .2s;
+  height: 100vh;
+  transition: color .2s, background .2s;
 }
 
 main, .bigFooter{background-color: var(--gray-blue-grey-blue-98);}
