@@ -7,19 +7,33 @@ import Swal from 'sweetalert2'
 
 
 const Counter = ({initialValue, stock, id, deleteItem }) => {
-    const {addProductCart} = useCustomContext()
+    const {addProductCart, isDark } = useCustomContext()
     const [quantity, setQuantity] = useState(initialValue)
     let location = useLocation();
    
+
+    const addDataTheme = () => {
+      let modal = document.getElementsByClassName('swal2-popup')
+      console.log(modal[0])
+      if (isDark) {
+        modal[0].setAttribute('data-theme', 'dark')
+      } else {
+        modal[0].setAttribute('data-theme', 'light')
+      }
+    }
+
+
     const onClickAddProduct = () =>{
         addProductCart(id, quantity)
         if(location.pathname=='/cart'){
           Swal.fire({
             title: 'El producto fue modificado correctamente',   
+            didOpen: addDataTheme
           })
         } else {
           Swal.fire({
             title: 'El producto fue agregado correctamente',   
+            didOpen: addDataTheme,
           })
         }
     }

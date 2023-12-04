@@ -13,6 +13,7 @@ const EditList = () => {
         1024: 2,
         576: 1
     };
+    document.body.classList.add('edit');
   return (
     <>
         <h1>EDITAR</h1>
@@ -29,13 +30,9 @@ const EditList = () => {
                   </Link>
               </div>
               {
-                  filteredProducts && filteredProducts.length > 0
-                      ? filteredProducts.map((product) => (
-                          <ProductsList product={product} key={product._id} edit="true" />
-                      ))
-                      : products.map((product) => (
-                          <ProductsList product={product} key={product._id} edit="true" />
-                      ))
+                products.map((product) => (
+                    <ProductsList product={product} key={product._id} edit="true" />
+                ))
               }
           </Masonry>
     </>

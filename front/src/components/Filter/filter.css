@@ -23,6 +23,7 @@
     box-shadow: 1px 1px 16px -15px;
     padding: 13px;
     cursor: pointer;
+    color:var(--black);
 }
 
 .btnCatFilter:hover,

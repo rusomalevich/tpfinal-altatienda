@@ -2,14 +2,26 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useCustomContext } from '../../ContextManager/ContextProvider'
 import { Counter } from '../../components'
-import { Trash } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
 import SweetAlert2 from 'react-sweetalert2'
 import './cart.css'
 
 const Cart = () => {
-  const {cart, getTotal, isInCart, removeFromCart } = useCustomContext()
+  const {isDark, cart, getTotal, isInCart, removeFromCart } = useCustomContext()
   const [swalProps, setSwalProps] = useState({})
+
+
+  const addDataTheme = () => {
+    let modal = document.getElementsByClassName('swal2-popup')
+    console.log(modal[0])
+    if (isDark) {
+      modal[0].setAttribute('data-theme', 'dark')
+    } else {
+      modal[0].setAttribute('data-theme', 'light')
+    }
+  }
+
+  document.body.classList.remove('edit');  
 
   return (
     <div className='cartContainer'>
@@ -20,7 +32,7 @@ const Cart = () => {
         <div className='cart'>
           {cart.map((product, index) => (
             <div key={product._id} id={product._id} className='card'>
-                <img src={product.image} alt={product.title} />
+              <img src={'http://localhost:3040/img/' + product.image} alt={product.title} />
                 <div className='cartProductDetails'>
                 <Link to={'/api/products/' + product._id} title={product.title}>
                     <h2>{product.title}</h2>
@@ -45,7 +57,8 @@ const Cart = () => {
             <button className='btn' onClick={() => {
               setSwalProps({
                 show: true,
-                title: '¡Tu compra fue realizada con éxito!'
+                title: '¡Tu compra fue realizada con éxito!',
+                didOpen: addDataTheme
               })
             }} >Comprar</button>
 
@@ -53,7 +66,7 @@ const Cart = () => {
         </div>
       </>
       :
-        <p>Tu carrito está vacío, podés agregar tus productos <NavLink to="/">aquí</NavLink></p>
+        <p className='errorSinProductos'>Tu carrito está vacío, podés agregar tus productos <NavLink to="/">aquí</NavLink></p>
       }
     </div>
   )

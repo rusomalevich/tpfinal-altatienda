@@ -5,4 +5,5 @@ import Footer from "./Footer/Footer"
 import ProductsList from "./ProductsList/ProductsList"
 import Filter from "./Filter/Filter"
 import Counter from "./Counter/Counter"
-export { Header, Search, Menu, Footer, ProductsList, Filter, Counter }
+import DarkModeToggle from "./DarkModeToggle/DarkModeToggle"
+export { Header, Search, Menu, Footer, ProductsList, Filter, Counter, DarkModeToggle }

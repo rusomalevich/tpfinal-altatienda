@@ -33,30 +33,11 @@
 
 .contactForm input, .contactForm textarea {
     background-color: var(--white);
+    color:var(--black);
     border-radius: 8px;
     border: 0.5px solid var(--grey-light);
 }
 
-.btn {
-    width: 289px;
-    height: 48px;
-    padding: 8px 20px;
-    margin-left:auto;
-    margin-top: 30px;
-    border-radius: 8px;
-    background-color: var(--secondary);
-    color: var(--white);
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 2rem;
-    border: 0;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.btn:hover {
-    background-color: var(--primary);
-}
 
 .required::after {
     content: '*';

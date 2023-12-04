@@ -1,5 +1,6 @@
 import React, {useEffect, useState}  from 'react'
 import {useParams} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useCustomContext } from '../../ContextManager/ContextProvider'
 import { Counter } from '../../components/index'
 import './detailpage.css'
@@ -21,7 +22,10 @@ const DetailPage = () => {
     fetchProductDetails()
   }, [id, getProductById])
 
-  if (!productDetail) {
+
+  if (productDetail === undefined) {
+    return <p>ID de producto incorrecto. Podés <Link to="/">volver a la tienda para buscar el producto</Link>.</p>;
+  } else if (!productDetail) {
     return <p>Cargando...</p>
   }
 
@@ -32,7 +36,7 @@ const DetailPage = () => {
           <h3 className='category'>{productDetail.category}</h3>
         </header> 
         <div className='imgPriceContainer'>
-          <img src={productDetail.image} alt="" />
+        <img src={'http://localhost:3040/img/' + productDetail.image} alt="" />
           <p className='priceDetail'>${productDetail.price}</p>
           <p className='stockDetail'>Stock: {productDetail.stock}</p>
         </div>

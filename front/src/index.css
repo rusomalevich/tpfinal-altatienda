@@ -1,5 +1,6 @@
 :root {
   --white:#fff;
+  --whiteBtn: #fff;
   --gray-blue-grey-blue-98: #F7F8FA;
   --gray-blue-grey-blue-95: #EDEFF2;
   --gray-blue-grey-blue-94: rgb(247 248 250 / 94%);
@@ -7,34 +8,40 @@
   --gray-blue-grey-blue-70: #7D8FB3;
   --gray-blue-grey-blue-60: #6B7A99;
   --gray-blue-grey-blue-50: #4D5E80;
+  --black:#000;
   --grey-normal:#586870;
   --primary: #07d2be;
   --primaryAlpha: rgba(7, 210, 190, 0.291);
   --secondary:#F23F73;
+  --secondaryAlpha: rgba(242, 64, 114, 0.291);
   --grey-light:#C0C6C9;
+  --backgroundBody: #07d2be29;
+  --grismedio50: rgb(127 127 127);
   font-size:10px;
 }
 
 p {font-size:1.5rem;}
 
 /* Dejo para dps por si implemento modo oscuro pero dependo de que las imágenes de la API no tengan el fondo blanco*/
-/*
-@media (prefers-color-scheme: dark) {
-  :root {
- 
-    --white: #000;
-    --gray-blue-grey-blue-98: #2c3548;
-    --gray-blue-grey-blue-95: #6B7A99;
-    --gray-blue-grey-blue-94: rgba(125, 143, 179, 0.94);
+/*@media (prefers-color-scheme: dark) {*/
+[data-theme="dark"] {
+
+    --white: #171717;
+    --gray-blue-grey-blue-98: #202022;
+    --gray-blue-grey-blue-95: #48494a;
+    --gray-blue-grey-blue-94: rgba(28, 30, 35, 0.94);
     --gray-blue-grey-blue-80: #ADB8CC;
     --gray-blue-grey-blue-70: rgb(247 248 250 / 94%);
     --gray-blue-grey-blue-60: #EDEFF2;
     --gray-blue-grey-blue-50: #F7F8FA;
+    --black: #fff;
     --grey-normal: #586870;
     --primary: #07d2be;
     --secondary: #F23F73;
     --grey-light: #C0C6C9;
+    --grismedio50: rgb(127 127 127);
+    --backgroundBody: #162120;
+    --whiteBtn: #fff;
     font-size: 10px;
-  }
 }
-*/
+

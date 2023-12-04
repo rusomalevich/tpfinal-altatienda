@@ -1,13 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { HouseDoorFill, CartFill, EnvelopeFill, PencilFill } from 'react-bootstrap-icons'
 import './menu.css'
 import { NavLink } from 'react-router-dom'
 import { useCustomContext } from '../../ContextManager/ContextProvider'
+import { DarkModeToggle } from '../../components'
 
 
 
 const Menu = () => {
-  const { cart } = useCustomContext()
+  const { cart, isDark, setIsDark } = useCustomContext()
+  
+
 
   return (
     <>
@@ -23,8 +26,11 @@ const Menu = () => {
           
         </NavLink>
         <NavLink to='/contact' className='navItem'><EnvelopeFill /></NavLink>
+        <DarkModeToggle
+          isChecked={isDark}
+          handleChange={()=> setIsDark(!isDark)}
+          />
     </nav>
-
     </>
   )
 }

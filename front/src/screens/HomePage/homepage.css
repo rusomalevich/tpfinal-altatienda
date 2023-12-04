@@ -30,6 +30,10 @@
     margin-bottom: 30px;
 }
 
+.errorSinProductos {
+    padding-left: 10px;
+}
+
 @media (max-width: 768px) {
     .cardContainer {
         width: 100%;

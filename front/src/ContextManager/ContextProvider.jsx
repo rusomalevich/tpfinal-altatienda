@@ -1,5 +1,4 @@
 import React, {createContext, useContext, useState, useEffect} from "react"
-import axios from 'axios'
 const Context = createContext()
 
 const ContextProvider = ({children}) => {
@@ -12,6 +11,15 @@ const ContextProvider = ({children}) => {
     const [filteredProducts, setFilteredProducts] = useState([])
     const [cart, setCart] = useState([])
     const [loading, setLoading] = useState(false)
+    
+    const [isDark, setIsDark] = useState(() => {
+        const storedIsDark = localStorage.getItem('isDark');
+        return storedIsDark ? JSON.parse(storedIsDark) : true;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('isDark', JSON.stringify(isDark));
+    }, [isDark]);
 
 
     const getProductById = (id) => {
@@ -69,8 +77,6 @@ const ContextProvider = ({children}) => {
 
      useEffect(() => {
         const getCategories = async () => {
-            /* const responseCat = await axios.get(`${BASEURL}${URLcats}`)
-            setCategories(responseCat.data) */
             fetch('http://localhost:3040/api/products/categories',
                 { method: 'GET' }
             ).then((res) => res.json())
@@ -82,20 +88,10 @@ const ContextProvider = ({children}) => {
         getCategories()
     }, []) 
 
-/*     useEffect(() => {
-        const getSearchCategories = async () => {
-            setLoading(true)
-            const responseSearchCat = await axios.get(`${BASEURL}${URLsearchInCats}jewelery`)
-            setSearchInCategories(responseSearchCat.data)
-            setLoading(false)
-        }
-        getSearchCategories()
-    }, []) */
-
     //Agarra los datos de ese producto puntual
-    const getProductsById = (id) => {
+/*     const getProductsById = (id) => {
         return products.find(product => product._id === Number(id))
-    }
+    } */
 
     //ESTE BUSCA EN LOS TITLES
     const filterSearch = (searchValue) => {
@@ -114,7 +110,7 @@ const ContextProvider = ({children}) => {
     }
     
   return (
-      <Context.Provider value={{ loading, products, setProducts, getProductById, cart, setCart, removeFromCart, addProductCart, isInCart, getProductCartById, getTotal, searchInCategories, categories, filteredProducts, setFilteredProducts, filterSearch, filterCatSearch }}>
+      <Context.Provider value={{isDark, setIsDark, loading, products, setProducts, getProductById, cart, setCart, removeFromCart, addProductCart, isInCart, getProductCartById, getTotal, searchInCategories, categories, filteredProducts, setFilteredProducts, filterSearch, filterCatSearch }}>
         {children}
     </Context.Provider>
   )

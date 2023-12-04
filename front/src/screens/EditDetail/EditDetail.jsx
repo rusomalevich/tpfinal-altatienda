@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useCustomContext } from '../../ContextManager/ContextProvider'
 import './EditDetail.css'
@@ -9,7 +10,8 @@ const EditDetail = () => {
 
     const { id } = useParams()
 
-    const { getProductById, isInCart, getProductCartById } = useCustomContext()
+    const { isDark, getProductById, isInCart, getProductCartById } = useCustomContext()
+
     const [productDetail, setProductDetail] = useState(isInCart(id) ? getProductCartById(id) : getProductById(id))
 
     useEffect(() => {
@@ -22,8 +24,20 @@ const EditDetail = () => {
         fetchProductDetails()
     }, [id, getProductById])
 
-    if (!productDetail) {
+    if (productDetail === undefined) {
+        return <p>ID de producto incorrecto. Podés <Link to="/edit">volver a la tienda para buscar el producto</Link>.</p>;
+    } else if (!productDetail) {
         return <p>Cargando...</p>
+    }
+
+    const addDataTheme = () => {
+        let modal = document.getElementsByClassName('swal2-popup')
+        console.log(modal[0])
+        if (isDark) {
+            modal[0].setAttribute('data-theme', 'dark')
+        } else {
+            modal[0].setAttribute('data-theme', 'light')
+        }
     }
 
     const handleChangeUpdate = (e) => {
@@ -40,6 +54,7 @@ const EditDetail = () => {
             if (response.ok) {
                 Swal.fire({
                     title: 'El producto fue eliminado correctamente',
+                    didOpen: addDataTheme,
                     didClose: () => location.replace('/')
                 })
                 console.log('El producto fue eliminado correctamente');
@@ -74,6 +89,7 @@ const EditDetail = () => {
             if (response.ok) {
                 Swal.fire({
                     title: 'El producto fue modificado correctamente',
+                    didOpen: addDataTheme,
                     didClose: () => location.replace('/')
                 })
                 console.log('El producto fue modificado correctamente');
@@ -89,22 +105,33 @@ const EditDetail = () => {
     const urlAction = `/api/products/edit/${id}`
 
     return (
-        <article id={productDetail._id} className='detailsProduct'>
-            <form action={urlAction} method='PUT' onSubmit={handleSubmitUpdate}>
+        <article id={productDetail._id}>
+            <form action={urlAction} method='PUT' onSubmit={handleSubmitUpdate} className='detailsProduct editProduct'>
                 <header>
                     <input type="text" className='titleInput' name='title' defaultValue={productDetail.title} onChange={handleChangeUpdate} />
                     <input type="text" className='categoryInput' name='category' defaultValue={productDetail.category} onChange={handleChangeUpdate} />
                 </header>
                 <div className='imgPriceContainer'>
-                    <img src={productDetail.image} alt="" />
-                    <input type="text" defaultValue={productDetail.image} name='image' />
-                    <span className='priceDetail'>$</span><input type="number" className='priceDetailInput' name='price' defaultValue={productDetail.price} onChange={handleChangeUpdate} />
-                    <p className='stockDetail'>Stock: {productDetail.stock}</p>
-                    <span className='stockDetail'>Stock: </span><input type="number" className='stockDetailInput' name='stock' defaultValue={productDetail.stock} onChange={handleChangeUpdate} />
-                    <textarea name="description" id="" cols="30" rows="10" defaultValue={productDetail.description}></textarea>
+                    <div className='imgContainer'>
+                        <label htmlFor="image" className='inputURLlabel'>Escriba una URL
+                            <input type="text" defaultValue={productDetail.image} name='image' className='inputURL' />
+                        </label>
+                        <img src={'http://localhost:3040/img/' + productDetail.image} alt={productDetail.title} className='imgProductEdit'/>
+                    </div>
+                    <div className='priceStockDetail'>
+                        <label className='priceDetail' htmlFor='price'>$<input type="number" className='priceDetailInput' name='price' defaultValue={productDetail.price} onChange={handleChangeUpdate} /></label>
+                        <label className='stockDetail' htmlFor='stock'>Stock:<input type="number" className='stockDetailInput' name='stock' defaultValue={productDetail.stock} onChange={handleChangeUpdate} /></label>
+                    </div>
                 </div>
-                <button className='btn'>Guardar</button>
-                <button className='btn' onClick={handleDeleteProduct}>Eliminar</button>
+                <div className='descBtnContainer'>
+                    <label htmlFor="description" className='descriptionDetail'>Descripción
+                        <textarea name="description" id="description" defaultValue={productDetail.description}></textarea>
+                    </label>
+                    <div className='btnContainer'>
+                        <button className='btn'>Guardar</button>
+                        <button className='btn' onClick={handleDeleteProduct}>Eliminar</button>
+                    </div>
+                </div>
             </form>
         </article>
     )

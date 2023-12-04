@@ -10,12 +10,19 @@ const createUser = async (user) => {
     return await newUser.save()
 }
 
-const getUser = async() => {
+ const getUserByEmail = async(email) => {
+    //return await User.find({"email": email})
+    return await User.findOne({ "email": email })
 
 }
+
+/* const getUserByEmail = async () => {
+    return await User.find({})
+
+} */
 
 const verifyExistUser = async () => {
 
 }
 
-module.exports = {getUser, verifyExistUser, createUser}
+module.exports = { getUserByEmail, verifyExistUser, createUser}

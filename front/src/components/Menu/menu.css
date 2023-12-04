@@ -1,5 +1,5 @@
 .menu {
-    width: 80px;
+    width: 150px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,9 +38,6 @@
     right: -7px;
 }
 @media (max-width:576px) {
-    .menu {
-        width: 85px;
-    }
     .menu a svg {
         width: 25px;
         height: 25px;

@@ -1,30 +1,38 @@
 # altaTienda
-*altaTienda* es un ecommerce realizado en React para la Diplomatura en Programador Web Full Stack de la UTN.
-El diseño está basado en un [template de Figma](https://www.figma.com/file/E7y4O2RBKOZ1eVyCcyA0FQ/Commerce-One-(Community)?type=design&node-id=402%3A10020&mode=design&t=aBvQ4K1TspJIR8C5-1).
+Este es el readme del *frontend* de *altaTienda* 
 
 Los paquetes de React que se utilizan en el proyecto son:
-    * Axios para la conexión con FakeStoreApi
     * React Bootstrap Icons para los íconos
     * React Router DOM para manejar las rutas
     * React Masonry CSS para acomodar mejor los productos según la altura de cada caja
     * React Sweet Alert para generar modales que den cuenta de las acciones que realiza el usuario
 
-La organización de los componentes fue dividida por páginas en la carpeta "screens" o en la carpeta "components" según la organización visual o funcional. Además se utilizó un componente __ContextProvider__ para
+La organización de los componentes fue dividida por páginas en la carpeta "screens" o en la carpeta "components" según la organización visual o funcional. Además se utilizó un componente __ContextProvider__ para poder acceder a algunos estados desde cualquier componente que se requiera. Por ejemplo *isDark* que almacena información sobre el modo oscuro (además queda guardado en un session.storage). Esta funcionalidad se agregó en la última versión.
+
+Notas de actualización: Además de los componentes que se mencionan debajo, se modificaron funciones para consumir una API propia con un fetch y, al mismo tiempo, se agregaron controles de errores (por ejemplo si una URL contiene un ID incompleto o la base de datos se queda sin productos).
 
 En **screens**:
+Dentro de los componentes que agrupan visualmente
+
+Componentes anteriores:
 
    * __HomePage__ es la página de inicio, en donde se listan los productos. Allí se pueden mirar todos los productos, buscar escribiendo un término o verlos divididos por categorías.
    * __DetailPage__ es la página donde están los detalles de cada producto, desde allí también se puede definir cuántos productos se quiere comprar y agregarlos al carrito.
    * __Cart__ es la página que muestra los productos que se están por comprar, desde allí se pueden modificar las cantidades, eliminar del carrito los productos o confirmar la compra. El carrito se encuentra fijado en la pantalla para poder verlo todo el tiempo aún si hubiera scroll. En la versión mobile se encuentra sticky, por lo que se fija al bajar y se posiciona sobre el resto de los elementos. Esto permite realizar la compra sin tener que volver al principio.
    * __Contact__ es donde se puede mandar un mail por cualquier consulta.
 
+Componentes nuevos
+    * __CreatePage__ Sirve para crear un producto nuevo.
+    * __EditList__ Además de mostrar los productos, muestra una tarjeta para agregar uno nuevo. Este componente utiliza *ProductList*, al que le envía la propiedad *edit*. Si esta es true, el componente renderea opciones de edición, como un botón de editar y otro de eliminar, además de que los links son a la edición de cada producto en particular.
+    * __EditDetail__ Permite tanto editar cada uno de los campos de cada producto como eliminar el producto de forma completa.
+
 En **components**:
 
-Dentro de los componentes que agrupan visualmente
+El único nuevo es __DarkModeToggle__ que permite cambiar entre modo claro y oscuro. Es renderizado dentro del componente __Menu__ y usa el estado isDark que consume del Contexto. Ese estado es a la vez guardado en un session.storage para garantizar que si se actualiza la página quede en el estado previo.
+
+Componentes anteriores
 * __Header__ contiene y estructura el logo, el componente de búsqueda (__Search__) y el menús (__Menu__) con los links. Se encuentra con un position sticky para que al realizar scroll vertical se fije en la parte superior de la página. El botón para ir al carrito también está conectado al ContextProvider para mostrar cuantos productos hay en el carrito, si hay alguno.
-
 * __Footer__ contiene un grupo de links para consultar más información de la tienda
-
 * __ProductList__ muestra los productos obtenidos de la API
 * __Search__ permite buscar dentro de los productos según el título de cada producto.
 * __Filter__ permite seleccionar las categorías que se pueden usar para filtrar los productos

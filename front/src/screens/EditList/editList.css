@@ -1,3 +1,8 @@
 .iconoPlus {
     font-size: 3rem;
 }
+
+.edit .card, .edit article {
+    background-color:var(--backgroundBody);
+    padding-bottom: 5rem;
+}

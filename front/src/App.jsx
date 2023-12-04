@@ -1,13 +1,16 @@
+import React, { useState } from 'react'
 import './App.css'
 import { Header, Footer } from './components'
 import { Cart, Contact, DetailPage, HomePage, EditList, EditDetail, CreatePage } from './screens'
 import { Route, Routes } from 'react-router-dom'
+import { useCustomContext } from './ContextManager/ContextProvider'
 
 
 function App() {
-
+  const { isDark } = useCustomContext()
+  
   return (
-    <>
+    <div className='body' data-theme={isDark ? 'dark' : 'light'}>
       <Header />
       <main>
         {/*<ProductsPage />*/}
@@ -22,7 +25,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
 

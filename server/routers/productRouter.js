@@ -12,11 +12,11 @@ productRouter.get('/categories', async(req, res) => {
 
 productRouter.get('/:pid', async(req, res) => {
     const {pid} = req.params
-    let product = await getProductById(pid)
-    if(product) {
-        res.status(200).json({ok:true, product})
+    const productResult = await getProductById(pid)
+    if(productResult.ok){
+        res.status(200).json({ ok: true, product: productResult.product })
     } else {
-        res.status(404).json({ok:false, error: 'producto no encontrado'})
+        res.status(404).json({ ok: false, error: productResult.error })
     }
 })
 
@@ -29,7 +29,6 @@ productRouter.post('/', async (req, res) => {
 productRouter.put('/edit/:pid', async(req, res) => {
     const { pid } = req.params
     const { title, category, image, price, stock, description } = req.body
-    console.log(pid, { title, category, image, price, stock, description })
     await updateProduct(pid, {title, category, image, price, stock, description})
     let result = await updateProduct(pid, { title, category, image, price, stock, description })
     if (result.ok) {

@@ -1,19 +1,36 @@
 import React, { useState } from 'react'
+import { useCustomContext } from '../../ContextManager/ContextProvider'
 import SweetAlert2 from 'react-sweetalert2'
 import './contact.css'
 
 const Contact = () => {
 
+  const { isDark } = useCustomContext()
   const [swalSend, setSwalSend] = useState({})
+
+  const addDataTheme = () => {
+    let modal = document.getElementsByClassName('swal2-popup')
+    console.log(modal[0])
+    if (isDark) {
+      modal[0].setAttribute('data-theme', 'dark')
+    } else {
+      modal[0].setAttribute('data-theme', 'light')
+    }
+  }
 
   const sendMail = (e) => {
     e.preventDefault()
     console.log(e.target)
     setSwalSend({
       show: true,
-      title: 'El correo ha sido enviado'
+      title: 'El correo ha sido enviado',
+      didOpen: addDataTheme
     })
+
+    
   }
+  document.body.classList.remove('edit');  
+  
   return (
     <div className='contactPage'>
         <h1>Contacto</h1>

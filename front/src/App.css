@@ -5,6 +5,7 @@ a:link, a:visited {color:var(--secondary)}
   display: flex; 
   flex-direction: column;
 }
+html, #root {height: 100%;}
 
 body, input {font-family: 'Poppins', sans-serif;}
 header, main, footer {padding: 0 20px; box-sizing: border-box;}
@@ -12,9 +13,25 @@ h1 {font-weight: 900;}
 main h1 {
   padding-left: 10px;
 }
+
 main {padding: 30px 20px;}
+main h1, main h2, main p, main
+ span {color: var(--black);}
 
 
-body {
+.body, body {
   background-color: var(--gray-blue-grey-blue-98);
+  height: 100%;
+  transition: .2s;
+}
+
+main, .bigFooter{background-color: var(--gray-blue-grey-blue-98);}
+
+.swal2-container .swal2-popup {
+  background: var(--white);
+  color: var(--black);
+}
+
+.swal2-container .swal2-popup h2 {
+  font-weight: 800;
 }

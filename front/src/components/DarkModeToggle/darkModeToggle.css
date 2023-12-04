@@ -1,0 +1,18 @@
+.toggleCont {
+    margin-left: auto;
+}
+.toggle {
+    display:none;
+}
+
+.iconDarkMode {
+    font-size: 3rem;
+    align-items: center;
+    display: flex;
+    transition: .3s;
+}
+
+.iconDarkMode:hover {
+    color: var(--primary);
+    cursor:pointer;
+}

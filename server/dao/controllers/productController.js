@@ -15,8 +15,6 @@ const getProducts = async () => {
 
 const getCategories = async() => {
     try {
-        //return await Product.find({}, ({ "category": 1 }))
-        //return await Product.aggregate([{ $project: { category: '$category', _id: 0 } },])
         return await Product.distinct('category')
     }
     catch(err){
@@ -26,21 +24,20 @@ const getCategories = async() => {
 }
 
 const getProductById = async (pid) => {
-    return await Product.findById(pid)
+    try {
+        const product = await Product.findById(pid)
+        if (!product) {
+            return { ok: false, error: 'Producto no encontrado' }
+        }
+        return {ok:true, product}
+    }
+    catch(err) {
+        return{error:'Error al buscar el producto'}
+    }
 }
 
 const updateProduct = async (pid, {title, category, image, price, stock, description}) => {
-    console.log(pid, { title, category, image, price, stock, description })
     try {
-/*         const updatedProduct = await Product.findByIdAndUpdate(pid,
-            {title: title}, 
-            {category: category},
-            {image: image},
-            {price: price},
-            {stock: stock},
-            {description: description}
-            ) */
-
         const updatedProduct = await Product.updateOne(
             {
                 "_id": pid,
@@ -69,7 +66,7 @@ const updateProduct = async (pid, {title, category, image, price, stock, descrip
 }
 
 const deleteProduct = async (pid) => {
-    console.log(pid)
+
     try {
         const deletedProduct = await Product.findByIdAndDelete(pid)
         if (deleteProduct) {
